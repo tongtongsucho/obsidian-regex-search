@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-regex-search",
+  "name": "Regex Search",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "跨文件和单文件正则表达式搜索插件",
+  "author": "Tongtong Zhang",
+  "authorUrl": "",
+  "isDesktopOnly": false
+} 
