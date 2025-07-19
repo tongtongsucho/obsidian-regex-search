@@ -1,6 +1,6 @@
 {
   "name": "obsidian-regex-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "跨文件和单文件正则表达式搜索插件",
   "main": "main.js",
   "scripts": {
