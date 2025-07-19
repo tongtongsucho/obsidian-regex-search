@@ -33,6 +33,7 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				font-weight: bold;
 			}
 			
+<<<<<<< HEAD
 			.regex-pattern-input, .regex-replace-input {
 				width: calc(100% - 60px);
 				padding: 8px;
@@ -64,6 +65,14 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				display: block;
 				margin-bottom: 5px;
 				font-weight: bold;
+=======
+			.regex-pattern-container input {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid var(--background-modifier-border);
+				border-radius: 4px;
+				font-family: monospace;
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			}
 			
 			.regex-options-container {
@@ -79,6 +88,7 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				gap: 5px;
 			}
 			
+<<<<<<< HEAD
 			.regex-progress {
 				margin-bottom: 15px;
 				padding: 10px;
@@ -88,6 +98,8 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				color: var(--text-muted);
 			}
 			
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			.regex-button-container {
 				display: flex;
 				gap: 10px;
@@ -101,6 +113,7 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				background: var(--background-primary);
 				color: var(--text-normal);
 				cursor: pointer;
+<<<<<<< HEAD
 				transition: background-color 0.2s;
 			}
 			
@@ -131,12 +144,31 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 			
 			.regex-results-container {
 				max-height: 500px;
+=======
+			}
+			
+			.regex-button-container button:hover {
+				background: var(--background-modifier-hover);
+			}
+			
+			.regex-results-container {
+				max-height: 400px;
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 				overflow-y: auto;
 				border: 1px solid var(--background-modifier-border);
 				border-radius: 4px;
 				padding: 10px;
 			}
 			
+<<<<<<< HEAD
+=======
+			.regex-loading {
+				text-align: center;
+				padding: 20px;
+				color: var(--text-muted);
+			}
+			
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			.regex-no-results {
 				text-align: center;
 				padding: 20px;
@@ -151,6 +183,7 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				font-weight: bold;
 			}
 			
+<<<<<<< HEAD
 			.regex-error {
 				margin-bottom: 10px;
 				padding: 10px;
@@ -159,6 +192,8 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				color: var(--text-error);
 			}
 			
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			.regex-file-result {
 				margin-bottom: 20px;
 				border: 1px solid var(--background-modifier-border);
@@ -178,18 +213,24 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				background: var(--background-secondary);
 				border-radius: 4px;
 				cursor: pointer;
+<<<<<<< HEAD
 				transition: background-color 0.2s;
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			}
 			
 			.regex-match:hover {
 				background: var(--background-modifier-hover);
 			}
 			
+<<<<<<< HEAD
 			.regex-match.loading {
 				opacity: 0.5;
 				cursor: wait;
 			}
 			
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			.regex-match-location {
 				font-size: 0.9em;
 				color: var(--text-muted);
@@ -197,21 +238,32 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 			}
 			
 			.regex-match-content {
+<<<<<<< HEAD
 				font-family: var(--font-monospace);
 				font-size: 0.9em;
 				line-height: 1.4;
+=======
+				font-family: monospace;
+				font-size: 0.9em;
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			}
 			
 			.regex-context-line {
 				margin: 2px 0;
+<<<<<<< HEAD
 				padding: 2px 0;
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			}
 			
 			.regex-match-line {
 				font-weight: bold;
+<<<<<<< HEAD
 				background: var(--background-modifier-border);
 				padding: 2px 4px;
 				border-radius: 2px;
+=======
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
 			}
 			
 			.regex-highlight {
@@ -219,6 +271,7 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				color: var(--text-on-accent);
 				padding: 2px 4px;
 				border-radius: 2px;
+<<<<<<< HEAD
 				font-weight: bold;
 			}
 			
@@ -299,3 +352,72 @@ var I=Object.defineProperty;var D=Object.getOwnPropertyDescriptor;var _=Object.g
 				color: var(--text-muted);
 			}
 		`,document.head.appendChild(e)}onClose(){this.isSearching&&this.plugin.cancelCurrentSearch();let{contentEl:e}=this;e.empty()}};b(T,"RegexSearchModal");var H=class extends l.Modal{constructor(e,t,r){super(e);this.options=t,this.callback=r}onOpen(){let{contentEl:e}=this;e.empty(),e.addClass("confirm-modal"),e.createEl("h3",{text:this.options.title}),e.createEl("div",{cls:"confirm-message"}).createEl("p",{text:this.options.message});let r=e.createDiv("confirm-buttons"),s=r.createEl("button",{text:this.options.confirmText,cls:"confirm-button-confirm"}),i=r.createEl("button",{text:this.options.cancelText,cls:"confirm-button-cancel"});s.addEventListener("click",()=>{this.callback(!0),this.close()}),i.addEventListener("click",()=>{this.callback(!1),this.close()}),this.scope.register([],"Enter",()=>{this.callback(!0),this.close()}),this.scope.register([],"Escape",()=>{this.callback(!1),this.close()}),i.focus()}onClose(){let{contentEl:e}=this;e.empty()}};b(H,"ConfirmModal");var F=class extends l.PluginSettingTab{constructor(e,t){super(e,t);this.plugin=t}display(){let{containerEl:e}=this;e.empty(),e.createEl("h2",{text:"正则表达式搜索设置"}),this.createBasicSettings(e),this.createAdvancedSettings(e),this.createPerformanceSettings(e),this.createUserExperienceSettings(e)}createBasicSettings(e){let t=e.createEl("h3",{text:"基本设置"});new l.Setting(e).setName("默认搜索模式").setDesc("打开搜索时的默认正则表达式模式").addText(r=>r.setPlaceholder("输入默认正则表达式...").setValue(this.plugin.settings.defaultPattern).onChange(async s=>{this.plugin.settings.defaultPattern=E.sanitizeInput(s),await this.plugin.saveSettings()})),new l.Setting(e).setName("区分大小写").setDesc("默认启用区分大小写搜索").addToggle(r=>r.setValue(this.plugin.settings.caseSensitive).onChange(async s=>{this.plugin.settings.caseSensitive=s,await this.plugin.saveSettings()})),new l.Setting(e).setName("多行模式").setDesc("默认启用多行模式（^ 和 $ 匹配行首行尾）").addToggle(r=>r.setValue(this.plugin.settings.multiline).onChange(async s=>{this.plugin.settings.multiline=s,await this.plugin.saveSettings()})),new l.Setting(e).setName("文件扩展名").setDesc("要搜索的文件扩展名（用逗号分隔）").addText(r=>r.setPlaceholder("md,txt,json,js,ts").setValue(this.plugin.settings.fileExtensions.join(",")).onChange(async s=>{let i=s.split(",").map(n=>n.trim()).filter(n=>n.length>0);this.plugin.settings.fileExtensions=i,await this.plugin.saveSettings()}))}createAdvancedSettings(e){let t=e.createEl("h3",{text:"高级设置"});new l.Setting(e).setName("包含隐藏文件").setDesc("在搜索中包含隐藏文件（以 . 开头的文件）").addToggle(r=>r.setValue(this.plugin.settings.includeHiddenFiles).onChange(async s=>{this.plugin.settings.includeHiddenFiles=s,await this.plugin.saveSettings()})),new l.Setting(e).setName("排除模式").setDesc("要排除的文件路径模式（用逗号分隔，支持正则表达式）").addText(r=>r.setPlaceholder("node_modules,\\.git,temp").setValue(this.plugin.settings.excludePatterns.join(",")).onChange(async s=>{let i=s.split(",").map(n=>n.trim()).filter(n=>n.length>0);this.plugin.settings.excludePatterns=i,await this.plugin.saveSettings()})),new l.Setting(e).setName("确认替换").setDesc("在执行全库替换操作前显示确认对话框").addToggle(r=>r.setValue(this.plugin.settings.confirmReplace).onChange(async s=>{this.plugin.settings.confirmReplace=s,await this.plugin.saveSettings()}))}createPerformanceSettings(e){let t=e.createEl("h3",{text:"性能设置"});new l.Setting(e).setName("每个文件最大结果数").setDesc("限制每个文件显示的最大搜索结果数量").addText(r=>r.setPlaceholder("50").setValue(this.plugin.settings.maxResultsPerFile.toString()).onChange(async s=>{let i=parseInt(s);!isNaN(i)&&i>0&&i<=v.MAX_RESULTS_PER_FILE&&(this.plugin.settings.maxResultsPerFile=i,await this.plugin.saveSettings())}))}createUserExperienceSettings(e){let t=e.createEl("h3",{text:"用户体验设置"});new l.Setting(e).setName("启用搜索历史").setDesc("保存和显示搜索历史记录").addToggle(r=>r.setValue(this.plugin.settings.enableSearchHistory).onChange(async s=>{this.plugin.settings.enableSearchHistory=s,await this.plugin.saveSettings()})),new l.Setting(e).setName("启用进度指示器").setDesc("在搜索和替换过程中显示进度指示器").addToggle(r=>r.setValue(this.plugin.settings.enableProgressIndicator).onChange(async s=>{this.plugin.settings.enableProgressIndicator=s,await this.plugin.saveSettings()})),new l.Setting(e).setName("清空搜索历史").setDesc("删除所有保存的搜索历史记录").addButton(r=>r.setButtonText("清空历史").setWarning().onClick(async()=>{this.plugin.clearSearchHistory(),new l.Notice("搜索历史已清空")}))}};b(F,"RegexSearchSettingTab");
+=======
+			}
+		`;
+    document.head.appendChild(style);
+  }
+  // 高亮匹配的文本
+  highlightMatch(editor, match, filePath) {
+    try {
+      const line = match.line - 1;
+      const column = match.column - 1;
+      const matchLength = match.match.length;
+      editor.setSelection(
+        { line, ch: column },
+        { line, ch: column + matchLength }
+      );
+      setTimeout(() => {
+        try {
+          editor.setCursor(line, column);
+        } catch (error) {
+        }
+      }, 3e3);
+    } catch (error) {
+      console.error("\u9AD8\u4EAE\u5339\u914D\u6587\u672C\u65F6\u51FA\u9519:", error);
+    }
+  }
+  onClose() {
+    const { contentEl } = this;
+    contentEl.empty();
+  }
+};
+var RegexSearchSettingTab = class extends import_obsidian.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h2", { text: "\u6B63\u5219\u8868\u8FBE\u5F0F\u641C\u7D22\u8BBE\u7F6E" });
+    new import_obsidian.Setting(containerEl).setName("\u9ED8\u8BA4\u641C\u7D22\u6A21\u5F0F").setDesc("\u6253\u5F00\u641C\u7D22\u65F6\u7684\u9ED8\u8BA4\u6B63\u5219\u8868\u8FBE\u5F0F\u6A21\u5F0F").addText((text) => text.setPlaceholder("\u8F93\u5165\u9ED8\u8BA4\u6B63\u5219\u8868\u8FBE\u5F0F...").setValue(this.plugin.settings.defaultPattern).onChange(async (value) => {
+      this.plugin.settings.defaultPattern = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian.Setting(containerEl).setName("\u533A\u5206\u5927\u5C0F\u5199").setDesc("\u9ED8\u8BA4\u542F\u7528\u533A\u5206\u5927\u5C0F\u5199\u641C\u7D22").addToggle((toggle) => toggle.setValue(this.plugin.settings.caseSensitive).onChange(async (value) => {
+      this.plugin.settings.caseSensitive = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian.Setting(containerEl).setName("\u591A\u884C\u6A21\u5F0F").setDesc("\u9ED8\u8BA4\u542F\u7528\u591A\u884C\u6A21\u5F0F\uFF08^ \u548C $ \u5339\u914D\u884C\u9996\u884C\u5C3E\uFF09").addToggle((toggle) => toggle.setValue(this.plugin.settings.multiline).onChange(async (value) => {
+      this.plugin.settings.multiline = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian.Setting(containerEl).setName("\u6BCF\u4E2A\u6587\u4EF6\u6700\u5927\u7ED3\u679C\u6570").setDesc("\u9650\u5236\u6BCF\u4E2A\u6587\u4EF6\u663E\u793A\u7684\u6700\u5927\u641C\u7D22\u7ED3\u679C\u6570\u91CF").addText((text) => text.setPlaceholder("50").setValue(this.plugin.settings.maxResultsPerFile.toString()).onChange(async (value) => {
+      const num = parseInt(value);
+      if (!isNaN(num) && num > 0) {
+        this.plugin.settings.maxResultsPerFile = num;
+        await this.plugin.saveSettings();
+      }
+    }));
+    new import_obsidian.Setting(containerEl).setName("\u5305\u542B\u9690\u85CF\u6587\u4EF6").setDesc("\u5728\u641C\u7D22\u4E2D\u5305\u542B\u9690\u85CF\u6587\u4EF6\uFF08\u4EE5 . \u5F00\u5934\u7684\u6587\u4EF6\uFF09").addToggle((toggle) => toggle.setValue(this.plugin.settings.includeHiddenFiles).onChange(async (value) => {
+      this.plugin.settings.includeHiddenFiles = value;
+      await this.plugin.saveSettings();
+    }));
+    new import_obsidian.Setting(containerEl).setName("\u6587\u4EF6\u6269\u5C55\u540D").setDesc("\u8981\u641C\u7D22\u7684\u6587\u4EF6\u6269\u5C55\u540D\uFF08\u7528\u9017\u53F7\u5206\u9694\uFF09").addText((text) => text.setPlaceholder("md,txt,json,js,ts").setValue(this.plugin.settings.fileExtensions.join(",")).onChange(async (value) => {
+      this.plugin.settings.fileExtensions = value.split(",").map((ext) => ext.trim());
+      await this.plugin.saveSettings();
+    }));
+  }
+};
+>>>>>>> 0885c94521e11983aa8e85e3382c3b5efacbd10e
