@@ -1,63 +1,232 @@
 /* Obsidian Regex Search Plugin Styles */
 
+/* Modal styles - 苹果风格设计 */
+.regex-search-modal {
+    width: 100%;
+    height: auto;
+    max-width: 480px;
+    max-height: 85vh;
+    border-radius: 16px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 32px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 有结果时的放大状态 */
+.regex-search-modal.has-results {
+    max-width: 800px;
+    min-height: 700px;
+    animation: modalExpand 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-search-modal {
+    max-width: 600px;
+    max-height: 70vh;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.regex-search-title {
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-normal);
+    padding: 16px 20px 0;
+    animation: titleFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    letter-spacing: -0.5px;
+}
+
 /* Main container styles */
 .regex-search-container {
-    margin-bottom: 20px;
-    padding: 16px;
-    background: var(--background-primary);
-    border-radius: 8px;
+    margin: 0;
+    padding: 0 28px 28px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    min-width: 0; /* 防止内容溢出 */
+    box-sizing: border-box;
+}
+
+.quick-search-container {
+    margin: 0;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
 }
 
 /* Pattern input styles */
 .regex-pattern-container {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .regex-pattern-container label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 600;
     color: var(--text-normal);
+    font-size: 14px;
 }
 
-.regex-pattern-container input {
-    width: 100%;
-    padding: 12px;
+/* Replace input styles */
+.regex-replace-container {
+    margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.regex-replace-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-normal);
+    font-size: 14px;
+}
+
+/* History container */
+.regex-history-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+.regex-pattern-container input,
+.regex-replace-container input {
+    width: 90%;
+    margin: 0 auto;
+    padding: 12px 16px;
     border: 2px solid var(--background-modifier-border);
-    border-radius: 6px;
+    border-radius: 12px;
     font-family: var(--font-monospace);
     font-size: 14px;
     background: var(--background-primary);
     color: var(--text-normal);
-    transition: border-color 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: left;
+    box-sizing: border-box;
+    min-width: 0;
+    animation: inputSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.regex-pattern-container input:focus {
+.regex-pattern-container input:focus,
+.regex-replace-container input:focus {
     outline: none;
     border-color: var(--interactive-accent);
+    background: var(--background-primary);
+    box-shadow: 0 0 0 3px rgba(var(--interactive-accent-rgb), 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+}
+
+.regex-pattern-container input::placeholder,
+.regex-replace-container input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* Search history dropdown */
+.regex-history-button {
+    padding: 8px 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 20px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: buttonSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(10px);
+}
+
+.regex-history-button:hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Quick search input */
+.quick-search-input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    font-size: 16px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    transition: all 0.2s ease;
+}
+
+.quick-search-input:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    background: var(--background-primary);
     box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.quick-search-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
 }
 
 /* Options container */
 .regex-options-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    gap: 24px;
     margin-bottom: 16px;
     padding: 12px;
     background: var(--background-secondary);
-    border-radius: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    box-sizing: border-box;
+    animation: inputSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .regex-toggle-container {
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.regex-toggle-container:hover {
+    background: var(--background-modifier-hover);
+    transform: scale(1.02);
 }
 
 .regex-toggle-container input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     accent-color: var(--interactive-accent);
 }
 
@@ -65,55 +234,148 @@
     font-size: 14px;
     color: var(--text-normal);
     cursor: pointer;
+    font-weight: 500;
+}
+
+/* Progress indicator */
+.regex-progress {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--background-secondary);
+    border-radius: 8px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--background-modifier-border);
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.regex-progress::before {
+    content: "⏳ ";
+    margin-right: 8px;
 }
 
 /* Button styles */
 .regex-button-container {
     display: flex;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .regex-button-container button {
-    padding: 10px 20px;
-    border: 2px solid var(--interactive-accent);
-    border-radius: 6px;
+    padding: 12px 20px;
+    border: 1px solid var(--interactive-accent);
+    border-radius: 12px;
     background: var(--interactive-accent);
     color: var(--text-on-accent);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 14px;
+    min-width: 80px;
+    animation: buttonSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    align-self: center;
+    margin: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.regex-button-container button:hover {
+.regex-button-container button:hover:not(:disabled) {
     background: var(--interactive-accent-hover);
     border-color: var(--interactive-accent-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.regex-button-container button:active {
-    transform: translateY(0);
+.regex-button-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }
 
-.regex-button-container button:nth-child(2) {
-    background: var(--background-primary);
+.regex-search-button {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.regex-replace-button {
+    background: var(--text-warning);
+    color: var(--text-on-accent);
+    border-color: var(--text-warning);
+}
+
+.regex-replace-button:hover:not(:disabled) {
+    background: var(--text-warning);
+    opacity: 0.9;
+}
+
+.regex-cancel-button {
+    background: var(--text-error);
+    color: var(--text-on-accent);
+    border-color: var(--text-error);
+    display: none;
+    align-self: center;
+    margin: 0;
+}
+
+.regex-cancel-button[style*="display: block"] {
+    display: flex !important;
+}
+
+.regex-cancel-button:hover:not(:disabled) {
+    background: var(--text-error);
+    opacity: 0.9;
+}
+
+.regex-clear-button {
+    background: var(--background-secondary);
     color: var(--text-normal);
     border-color: var(--background-modifier-border);
 }
 
-.regex-button-container button:nth-child(2):hover {
+.regex-clear-button:hover:not(:disabled) {
     background: var(--background-modifier-hover);
     border-color: var(--background-modifier-border-hover);
 }
 
 /* Results container */
 .regex-results-container {
-    max-height: 500px;
-    overflow-y: auto;
-    border: 2px solid var(--background-modifier-border);
+    max-height: none;
+    overflow-y: visible;
+    border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
-    padding: 16px;
-    background: var(--background-primary);
+    padding: 12px;
+    background: var(--background-secondary);
+    margin-top: 8px;
+    min-height: 0;
+    display: none; /* 默认隐藏 */
+}
+
+/* 只有当真正有内容时才显示结果容器 */
+.regex-results-container.has-content {
+    display: block;
+    min-height: 100px;
+    animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-search-results {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 8px;
+    background: var(--background-secondary);
+    margin-top: 12px;
 }
 
 .regex-loading {
@@ -144,15 +406,71 @@
     margin-bottom: 12px;
 }
 
+.quick-search-no-results {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.quick-search-no-results::before {
+    content: "🔍 ";
+    font-size: 20px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.regex-replace-success {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-success);
+    font-weight: 600;
+    background: var(--background-modifier-success);
+    border: 1px solid var(--text-success);
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.regex-replace-success::before {
+    content: "✅ ";
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.regex-replace-success div {
+    margin-bottom: 8px;
+}
+
+.regex-replace-success div:last-child {
+    margin-bottom: 0;
+}
+
+/* Error display */
+.regex-error {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: var(--background-modifier-error);
+    border-radius: 6px;
+    color: var(--text-error);
+    border: 1px solid var(--text-error);
+}
+
+.regex-error::before {
+    content: "⚠️ ";
+    margin-right: 8px;
+}
+
 /* Stats section */
 .regex-stats {
     margin-bottom: 20px;
     padding: 16px;
-    background: var(--background-modifier-success);
+    background: var(--background-secondary);
     border-radius: 8px;
-    font-weight: 600;
-    color: var(--text-success);
-    border-left: 4px solid var(--text-success);
+    font-weight: 700;
+    color: var(--color-green);
+    border: 2px solid var(--color-green);
+    font-size: 16px;
 }
 
 .regex-stats::before {
@@ -200,6 +518,61 @@
     font-size: 18px;
 }
 
+/* Quick search file results */
+.quick-search-file {
+    margin-bottom: 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 12px;
+    background: var(--background-primary);
+    transition: all 0.2s ease;
+}
+
+.quick-search-file:hover {
+    border-color: var(--interactive-accent);
+    transform: translateY(-1px);
+}
+
+.quick-search-filename {
+    font-weight: 600;
+    color: var(--text-accent);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.quick-search-filename::before {
+    content: "📄 ";
+    margin-right: 6px;
+}
+
+.quick-search-match {
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    margin-bottom: 4px;
+    transition: all 0.2s ease;
+}
+
+.quick-search-match:hover {
+    background: var(--background-modifier-hover);
+}
+
+.quick-search-match:last-child {
+    margin-bottom: 0;
+}
+
+.quick-search-line {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.quick-search-text {
+    color: var(--text-normal);
+}
+
 /* Match styles */
 .regex-match {
     margin-bottom: 16px;
@@ -218,8 +591,6 @@
     transform: translateX(4px);
 }
 
-
-
 /* 加载状态 */
 .regex-match.loading {
     opacity: 0.6;
@@ -228,8 +599,16 @@
 
 .regex-match.loading::before {
     content: "🔄 跳转中...";
-    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background-primary);
+    padding: 8px 16px;
+    border-radius: 4px;
     color: var(--interactive-accent);
+    font-weight: 500;
+    z-index: 1;
 }
 
 .regex-match-location {
@@ -248,6 +627,8 @@
     font-family: var(--font-monospace);
     font-size: 13px;
     line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-all;
 }
 
 .regex-context-line {
@@ -272,38 +653,234 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Confirmation modal */
+.confirm-modal {
+    max-width: 500px;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+}
+
+.confirm-modal h3 {
+    margin-bottom: 16px;
+    color: var(--text-warning);
+    text-align: center;
+}
+
+.confirm-message {
+    margin-bottom: 20px;
+    color: var(--text-normal);
+    line-height: 1.5;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.confirm-button-confirm {
+    padding: 10px 20px;
+    background: var(--text-warning);
+    color: var(--text-on-accent);
+    border: 1px solid var(--text-warning);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.confirm-button-confirm:hover {
+    background: var(--text-warning);
+    opacity: 0.9;
+}
+
+.confirm-button-cancel {
+    padding: 10px 20px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.confirm-button-cancel:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* Status bar */
+.regex-search-statusbar {
+    cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.regex-search-statusbar:hover {
+    background: var(--background-modifier-hover);
+}
+
 /* Scrollbar styles */
-.regex-results-container::-webkit-scrollbar {
+.regex-search-modal::-webkit-scrollbar,
+.regex-results-container::-webkit-scrollbar,
+.quick-search-results::-webkit-scrollbar {
     width: 8px;
 }
 
-.regex-results-container::-webkit-scrollbar-track {
+.regex-search-modal::-webkit-scrollbar-track,
+.regex-results-container::-webkit-scrollbar-track,
+.quick-search-results::-webkit-scrollbar-track {
     background: var(--background-secondary);
     border-radius: 4px;
 }
 
-.regex-results-container::-webkit-scrollbar-thumb {
+.regex-search-modal::-webkit-scrollbar-thumb,
+.regex-results-container::-webkit-scrollbar-thumb,
+.quick-search-results::-webkit-scrollbar-thumb {
     background: var(--background-modifier-border);
     border-radius: 4px;
 }
 
-.regex-results-container::-webkit-scrollbar-thumb:hover {
+.regex-search-modal::-webkit-scrollbar-thumb:hover,
+.regex-results-container::-webkit-scrollbar-thumb:hover,
+.quick-search-results::-webkit-scrollbar-thumb:hover {
     background: var(--background-modifier-border-hover);
+}
+
+/* 主模态框滚动条特殊样式 */
+.regex-search-modal::-webkit-scrollbar {
+    width: 10px;
+}
+
+.regex-search-modal::-webkit-scrollbar-thumb {
+    background: rgba(var(--background-modifier-border-focus-rgb, 128, 128, 128), 0.6);
+    border-radius: 5px;
+    border: 1px solid var(--background-primary);
+}
+
+.regex-search-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--background-modifier-border-focus-rgb, 128, 128, 128), 0.8);
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 480px) {
+    .regex-search-modal {
+        width: 98vw !important;
+        max-width: 98vw !important;
+        height: auto !important;
+        max-height: 90vh !important;
+    }
+    
+    .regex-search-modal.has-results {
+        max-width: 98vw !important;
+        min-height: 75vh !important;
+    }
+    
+    .regex-search-container {
+        padding: 0 8px 8px !important;
+    }
+    
+    .regex-search-title {
+        padding: 12px 8px 0 !important;
+        font-size: 18px;
+    }
+    
+    .regex-options-container {
+        padding: 6px !important;
+        gap: 6px !important;
+    }
+    
+    .regex-pattern-container input,
+    .regex-replace-container input {
+        padding: 6px 8px !important;
+    }
+    
+    .regex-history-button {
+        padding: 8px 10px !important;
+        font-size: 11px;
+    }
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
+    .regex-search-container {
+        padding: 0 16px 16px;
+    }
+    
+    .regex-search-title {
+        padding: 16px 16px 0;
+    }
+    
     .regex-options-container {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        padding: 8px;
     }
     
     .regex-button-container {
         flex-direction: column;
+        align-items: stretch;
     }
     
-    .regex-pattern-container input {
+    .regex-button-container button {
+        width: 100%;
+    }
+    
+    .regex-pattern-container input,
+    .regex-replace-container input,
+    .quick-search-input {
         font-size: 16px; /* Prevent zoom on mobile */
+        width: 100%;
+        padding: 8px 10px;
+    }
+    
+    .regex-search-modal,
+    .quick-search-modal {
+        max-width: 95vw;
+        max-height: 90vh;
+        min-width: unset;
+        width: 95vw;
+        height: auto;
+    }
+    
+    .regex-search-modal.has-results {
+        max-width: 95vw;
+        min-height: 70vh;
+    }
+    
+    .regex-history-container {
+        margin-top: 8px;
+        margin-bottom: 6px;
+    }
+    
+    .regex-history-button {
+        width: 100%;
+        margin-top: 0;
+        min-width: unset;
+    }
+    
+    .regex-pattern-container,
+    .regex-replace-container {
+        position: relative;
+    }
+}
+
+/* 中等屏幕适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .regex-search-modal {
+        max-width: 480px;
+        height: auto;
+        max-height: 85vh;
+    }
+    
+    .regex-search-modal.has-results {
+        max-width: 1200px;
+    }
+    
+    .regex-search-container {
+        padding: 0 20px 20px;
     }
 }
 
@@ -316,7 +893,66 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Animation for results appearing */
+.theme-dark .quick-search-file:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 苹果风格动画 */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes titleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes inputSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalExpand {
+    from {
+        max-width: 480px;
+        min-height: 0;
+    }
+    to {
+        max-width: 1500px;
+        min-height: 700px;
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -328,8 +964,27 @@
     }
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .regex-file-result {
     animation: fadeInUp 0.3s ease forwards;
+}
+
+.regex-match {
+    animation: slideInLeft 0.2s ease forwards;
+}
+
+.quick-search-file {
+    animation: fadeInUp 0.2s ease forwards;
 }
 
 /* Utility classes */
@@ -340,4 +995,20 @@
 .regex-fade-in {
     opacity: 0;
     animation: fadeInUp 0.3s ease forwards;
-} 
+}
+
+.regex-loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--background-modifier-border);
+    border-radius: 50%;
+    border-top-color: var(--interactive-accent);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

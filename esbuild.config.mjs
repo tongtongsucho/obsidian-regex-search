@@ -11,7 +11,7 @@ if you want to view the source, please visit the github repository of this plugi
 
 const prod = (process.argv[2] === 'production');
 
-const context = await esbuild.context({
+const config = {
 	banner: {
 		js: banner,
 	},
@@ -31,18 +31,46 @@ const context = await esbuild.context({
 		'@lezer/common',
 		'@lezer/highlight',
 		'@lezer/lr',
-		...builtins],
+		...builtins
+	],
 	format: 'cjs',
 	target: 'es2018',
 	logLevel: "info",
 	sourcemap: prod ? false : 'inline',
 	treeShaking: true,
+	minify: prod,
+	keepNames: true,
+	metafile: prod,
 	outfile: 'main.js',
-});
+	define: {
+		'process.env.NODE_ENV': JSON.stringify(prod ? 'production' : 'development'),
+	},
+	drop: prod ? ['console', 'debugger'] : [],
+	legalComments: 'none',
+	charset: 'utf8',
+};
 
-if (prod) {
-	await context.rebuild();
-	process.exit(0);
-} else {
-	await context.watch();
-} 
+try {
+	const context = await esbuild.context(config);
+
+	if (prod) {
+		console.log('🚀 Building for production...');
+		const result = await context.rebuild();
+		
+		if (result.metafile) {
+			console.log('\n📊 Build Analysis:');
+			const analysis = await esbuild.analyzeMetafile(result.metafile);
+			console.log(analysis);
+		}
+		
+		console.log('✅ Production build completed successfully!');
+		process.exit(0);
+	} else {
+		console.log('🔧 Starting development build with watch mode...');
+		await context.watch();
+		console.log('👀 Watching for changes...');
+	}
+} catch (error) {
+	console.error('❌ Build failed:', error);
+	process.exit(1);
+}
