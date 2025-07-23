@@ -135,6 +135,27 @@
     transform: translateY(-1px);
 }
 
+/* Validation states */
+.regex-pattern-container input.regex-pattern-valid {
+    border-color: var(--text-success);
+    box-shadow: 0 0 0 2px rgba(var(--color-green-rgb), 0.15);
+}
+
+.regex-pattern-container input.regex-pattern-valid:focus {
+    border-color: var(--text-success);
+    box-shadow: 0 0 0 3px rgba(var(--color-green-rgb), 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.regex-pattern-container input.regex-pattern-error {
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 2px rgba(var(--color-red-rgb), 0.15);
+}
+
+.regex-pattern-container input.regex-pattern-error:focus {
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 3px rgba(var(--color-red-rgb), 0.15), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
 .regex-pattern-container input::placeholder,
 .regex-replace-container input::placeholder {
     color: var(--text-muted);
@@ -237,6 +258,39 @@
     font-weight: 500;
 }
 
+/* 设置页面多行模式说明 */
+.regex-multiline-help {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--background-secondary);  
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.regex-multiline-help strong {
+    color: var(--text-normal);
+}
+
+.regex-multiline-help code {
+    background: var(--background-modifier-border);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    color: var(--text-accent);
+    font-size: 11px;
+}
+
+.regex-multiline-help em {
+    color: var(--text-faint);
+    font-style: italic;
+    margin-top: 4px;
+    display: block;
+}
+
 /* Progress indicator */
 .regex-progress {
     margin-bottom: 16px;
@@ -326,10 +380,6 @@
     display: none;
     align-self: center;
     margin: 0;
-}
-
-.regex-cancel-button[style*="display: block"] {
-    display: flex !important;
 }
 
 .regex-cancel-button:hover:not(:disabled) {
@@ -476,6 +526,48 @@
 .regex-stats::before {
     content: "📊 ";
     margin-right: 8px;
+}
+
+/* 实时搜索结果样式 */
+.regex-live-stats {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.regex-live-stats::before {
+    content: "⚡ ";
+    margin-right: 6px;
+}
+
+.regex-live-results {
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 6px;
+}
+
+/* 实时添加的结果项动画 */
+.regex-file-result {
+    animation: slideInFromRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: right center;
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
 }
 
 /* File result styles */
@@ -1007,8 +1099,463 @@
     animation: spin 1s ease-in-out infinite;
 }
 
+/* Progress indicator states */
+.regex-progress {
+    display: none;
+    padding: 12px 16px;
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+
+.regex-progress.regex-progress-visible {
+    display: block;
+}
+
+.regex-progress::before {
+    content: "⚡ ";
+    margin-right: 6px;
+}
+
+/* Button visibility states */
+.regex-cancel-button.regex-button-visible {
+    display: flex !important;
+}
+
+/* Multiline help styling */
+.regex-multiline-help {
+    margin-top: 8px;
+    padding: 12px;
+    background: var(--background-modifier-border);
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.regex-multiline-help .help-title {
+    font-weight: 600;
+    color: var(--text-normal);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.regex-multiline-help .help-item {
+    margin-bottom: 4px;
+    color: var(--text-muted);
+}
+
+.regex-multiline-help .help-code {
+    background: var(--background-primary);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    font-size: 12px;
+    color: var(--text-accent);
+}
+
+.regex-multiline-help .help-example {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-size: 12px;
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* 正则表达式库样式 */
+
+/* 快速访问按钮容器 */
+.regex-quick-access {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+/* 正则表达式库按钮 */
+.regex-library-button {
+    padding: 8px 16px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 20px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    animation: buttonSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(10px);
+}
+
+.regex-library-button:hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 正则表达式库管理模态框 */
+.regex-library-modal {
+    max-width: 800px;
+    max-height: 80vh;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.regex-library-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-normal);
+    padding: 20px 20px 0;
+}
+
+.regex-library-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.regex-library-add-btn,
+.regex-library-import-btn,
+.regex-library-export-btn {
+    padding: 10px 16px;
+    border: 1px solid var(--interactive-accent);
+    border-radius: 8px;
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.regex-library-add-btn:hover,
+.regex-library-import-btn:hover,
+.regex-library-export-btn:hover {
+    background: var(--interactive-accent-hover);
+    transform: translateY(-1px);
+}
+
+.regex-library-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0 20px 20px;
+}
+
+.regex-library-disabled,
+.regex-library-empty {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* 分类样式 */
+.regex-library-category {
+    margin-bottom: 24px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    background: var(--background-secondary);
+    overflow: hidden;
+}
+
+.regex-library-category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--background-modifier-hover);
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.regex-library-category-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-normal);
+}
+
+.regex-library-category-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--background-primary);
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.regex-library-category-content {
+    padding: 8px;
+}
+
+/* 库项样式 */
+.regex-library-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: var(--background-primary);
+    border-radius: 6px;
+    border: 1px solid var(--background-modifier-border);
+    transition: all 0.2s ease;
+}
+
+.regex-library-item:hover {
+    border-color: var(--interactive-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.regex-library-item:last-child {
+    margin-bottom: 0;
+}
+
+.regex-library-item-info {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.regex-library-item-name {
+    margin-bottom: 4px;
+}
+
+.regex-library-item-name strong {
+    color: var(--text-normal);
+    font-size: 14px;
+}
+
+.regex-library-item-description {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.regex-library-item-pattern {
+    font-family: var(--font-monospace);
+    font-size: 11px;
+}
+
+.regex-library-item-pattern code {
+    background: var(--background-modifier-border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-accent);
+}
+
+.regex-library-item-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.regex-library-use-btn,
+.regex-library-edit-btn,
+.regex-library-delete-btn {
+    padding: 6px 10px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.regex-library-use-btn:hover {
+    background: var(--interactive-accent);
+    border-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.regex-library-edit-btn:hover {
+    background: var(--text-warning);
+    border-color: var(--text-warning);
+    color: var(--text-on-accent);
+}
+
+.regex-library-delete-btn:hover {
+    background: var(--text-error);
+    border-color: var(--text-error);
+    color: var(--text-on-accent);
+}
+
+/* 编辑/添加表单模态框 */
+.regex-library-item-modal,
+.regex-library-import-modal {
+    max-width: 500px;
+    border-radius: 12px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+}
+
+.regex-library-item-modal h3,
+.regex-library-import-modal h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-normal);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-normal);
+    font-size: 14px;
+}
+
+.regex-form-input,
+.regex-form-textarea,
+.regex-import-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    font-size: 14px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.regex-form-input:focus,
+.regex-form-textarea:focus,
+.regex-import-textarea:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    background: var(--background-primary);
+    box-shadow: 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.2);
+}
+
+.regex-pattern-input {
+    font-family: var(--font-monospace);
+}
+
+.regex-form-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.regex-import-textarea {
+    min-height: 150px;
+    font-family: var(--font-monospace);
+    font-size: 12px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.regex-form-save-btn,
+.regex-form-cancel-btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.regex-form-save-btn {
+    background: var(--interactive-accent);
+    border: 1px solid var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.regex-form-save-btn:hover {
+    background: var(--interactive-accent-hover);
+    transform: translateY(-1px);
+}
+
+.regex-form-cancel-btn {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    color: var(--text-normal);
+}
+
+.regex-form-cancel-btn:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .regex-library-modal {
+        max-width: 95vw;
+        max-height: 90vh;
+    }
+    
+    .regex-library-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .regex-library-add-btn,
+    .regex-library-import-btn,
+    .regex-library-export-btn {
+        width: 200px;
+    }
+    
+    .regex-library-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .regex-library-item-info {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    
+    .regex-library-item-actions {
+        justify-content: center;
+    }
+    
+    .regex-library-item-modal,
+    .regex-library-import-modal {
+        max-width: 95vw;
+        margin: 10px;
+        padding: 16px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .regex-form-save-btn,
+    .regex-form-cancel-btn {
+        width: 100%;
     }
 }
